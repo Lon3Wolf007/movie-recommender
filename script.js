@@ -1,50 +1,51 @@
-const apiKey = "c9c9f1e5de0d2bc91c057433ad88afda"; // replace with your key
+const API_KEY = 'c9c9f1e5de0d2bc91c057433ad88afda'; // Replace with your TMDB API key
+const BASE_URL = 'https://api.themoviedb.org/3/search/movie';
+const IMG_BASE = 'https://image.tmdb.org/t/p/w500';
 
-async function searchMovies() {
-  const query = document.getElementById("searchInput").value;
-  const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`);
-  const data = await response.json();
-  displayMovies(data.results);
-}
+const searchInput = document.getElementById("searchInput");
+const searchBtn = document.getElementById("searchBtn");
+const resultsSection = document.getElementById("results");
 
-function displayMovies(movies) {
-  const resultsDiv = document.getElementById("movieResults");
-  const recTitle = document.getElementById("recTitle");
-  const recDiv = document.getElementById("recommendations");
-  resultsDiv.innerHTML = "";
-  recTitle.innerHTML = "";
-  recDiv.innerHTML = "";
+searchInput.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    const query = searchInput.value.trim();
+    if (query) searchMovies(query);
+  }
+});
 
-  movies.forEach((movie) => {
-    const div = document.createElement("div");
-    div.className = "movie";
-    div.innerHTML = `
-      <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
-      <h3>${movie.title}</h3>
-      <p>Rating: ${movie.vote_average}</p>
-    `;
-    div.onclick = () => getRecommendations(movie.id);
-    resultsDiv.appendChild(div);
-  });
-}
+searchBtn.addEventListener("click", function () {
+  const query = searchInput.value.trim();
+  if (query) searchMovies(query);
+});
 
-async function getRecommendations(movieId) {
-  const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${apiKey}`);
-  const data = await response.json();
-  const recDiv = document.getElementById("recommendations");
-  const recTitle = document.getElementById("recTitle");
+async function searchMovies(query) {
+  try {
+    const response = await fetch(`${BASE_URL}?api_key=${API_KEY}&query=${encodeURIComponent(query)}`);
+    const data = await response.json();
 
-  recTitle.innerHTML = "Recommended Movies:";
-  recDiv.innerHTML = "";
+    resultsSection.innerHTML = "";
 
-  data.results.slice(0, 6).forEach((movie) => {
-    const div = document.createElement("div");
-    div.className = "movie";
-    div.innerHTML = `
-      <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
-      <h3>${movie.title}</h3>
-      <p>Rating: ${movie.vote_average}</p>
-    `;
-    recDiv.appendChild(div);
-  });
+    if (data.results.length === 0) {
+      resultsSection.innerHTML = `<p>No results found for "${query}".</p>`;
+      return;
+    }
+
+    data.results.forEach(movie => {
+      const card = document.createElement("div");
+      card.classList.add("movie-card");
+
+      card.innerHTML = `
+        <img src="${movie.poster_path ? IMG_BASE + movie.poster_path : 'https://via.placeholder.com/180x270?text=No+Image'}" alt="${movie.title}">
+        <div class="info">
+          <div class="title">${movie.title}</div>
+          <div class="year">${movie.release_date ? movie.release_date.split("-")[0] : "N/A"}</div>
+        </div>
+      `;
+
+      resultsSection.appendChild(card);
+    });
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    resultsSection.innerHTML = `<p>Something went wrong. Try again later.</p>`;
+  }
 }
