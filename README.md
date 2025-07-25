@@ -23,11 +23,3 @@
 ## 📸 Screenshot
 
 ![Screenshot](./screenshots/screenshot1.png)
-
-## 🔧 How to Run Locally
-
-1. Clone this repo
-
-2. Open `index.html` in your browser or use Live Server in VS Code
-
-3. Replace the TMDB API key in `script.js`:
