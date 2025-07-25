@@ -1,32 +1,33 @@
-# 🎬 Movie Recommender System
+# 🎬 CineScope
 
-A simple movie recommender web application built using HTML, CSS, JavaScript, and The Movie Database (TMDb) API.
+**CineScope** is a sleek and modern movie search app powered by the [TMDB API](https://www.themoviedb.org/documentation/api). Search for your favorite movies and get quick details like posters, titles, and ratings in a visually engaging layout.
 
-## 🚀 Features
+## 🔍 Features
 
-- Search for any movie
-- View details like title, rating, and poster
-- Get similar movie recommendations
-- Responsive UI
+- Real-time movie search using TMDB API
+- Displays movie poster, title, release year, and rating
+- Mobile-responsive design with clean UI
+- Beautiful gradient background with animated cards
 
-## 🌐 Live Demo
+## 🚀 Demo
 
-🔗 [Click here to see live](https://shiny-halva-ab148b.netlify.app/)
+🔗 Live site: [Visit CineScope on Netlify](https://shiny-halva-ab148b.netlify.app/)
 
-## 📦 Built With
+## 🛠️ Tech Stack
 
-- HTML5, CSS3
-- Vanilla JavaScript
-- [TMDb API](https://www.themoviedb.org/documentation/api)
+- HTML5
+- CSS3 (with modern gradients and responsiveness)
+- JavaScript (Vanilla)
+- TMDB API for movie data
 
-## 📸 Screenshots
+## 📸 Screenshot
 
-_(Add screenshots here after hosting)_
+![Screenshot](./screenshots/screenshot1.png)
 
-## 🔧 Setup Instructions
+## 🔧 How to Run Locally
 
-```bash
-git clone https://github.com/Lon3Wolf007/movie-recommender.git
-cd movie-recommender
-open index.html in your browser
-```
+1. Clone this repo
+
+2. Open `index.html` in your browser or use Live Server in VS Code
+
+3. Replace the TMDB API key in `script.js`:

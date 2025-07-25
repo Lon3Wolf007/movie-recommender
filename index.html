@@ -3,14 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movie Recommender</title>
+    <title>CineScope 🎬</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
+
   <body>
-    <h1>Movie Recommender</h1>
-    <input type="text" id="searchInput" placeholder="Search for a movie..." />
-    <button id="searchBtn">Go</button>
-    <div id="results"></div>
+    <div class="container">
+      <header>
+        <h1>CineScope <span>🎬</span></h1>
+        <p class="tagline">
+          Search and discover your favorite movies in seconds
+        </p>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Type a movie name..."
+        />
+      </header>
+      <main>
+        <section id="results"></section>
+      </main>
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>
