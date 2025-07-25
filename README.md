@@ -11,7 +11,7 @@ A simple movie recommender web application built using HTML, CSS, JavaScript, an
 
 ## 🌐 Live Demo
 
-🔗 [Click here to see live](https://your-netlify-url.netlify.app) _(update after hosting)_
+🔗 [Click here to see live](https://shiny-halva-ab148b.netlify.app/)
 
 ## 📦 Built With
 
